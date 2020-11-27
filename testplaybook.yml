@@ -1,0 +1,10 @@
+#Playbook for online store
+
+---
+
+-
+  hosts: target1
+
+  tasks:
+    - name: 'Install Firewalld and have it start at startup'
+      command: sudo yum install firewalld
