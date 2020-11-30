@@ -28,4 +28,19 @@
       become: true
       become_method: sudo
 
-    
+    - name: 'Install MariaDB'
+      yum:
+        name: mariadb-server
+        state: present
+      become: true
+      become_method: sudo
+
+    - name: 'Start Mariadb'
+      service: service=mariadb state=started
+      become: true
+      become_method: sudo
+
+    - name: 'Enable Mariadb on system startup'
+      command: systemctl enable mariadb
+      become: true
+      become_method: sudo
