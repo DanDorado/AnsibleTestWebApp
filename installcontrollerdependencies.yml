@@ -4,7 +4,7 @@
 
 -
   name: 'Set up Git to pull repo from localhost onto controller'
-  hosts: controllers
+  hosts: controller
   tasks:
     
     - name: 'Initialise'
