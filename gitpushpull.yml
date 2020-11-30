@@ -3,7 +3,7 @@
 ---
 
 -
-  name: 'Push local project to "https://github.com/DanDorado/AnsibleTestWebApp.git"'
+  name: 'Push local project to "https://github.com/DanDorado/AnsibleTestWebApp.git" if there are any changes'
   hosts: localhost
   tasks:
     - name: 'git add all'
@@ -11,14 +11,19 @@
 
     - name: 'git diff'
       command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git diff
-      register: result
+      register: changes
+
+    - name: debug
+      debug:
+        var: changes
 
     - name: 'git commit if there is a difference'
       command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git commit -m 'This commit was made through ansible gitpushpull.yml'
-      when: result.stdout == ""
+      when: changes.stdout == ""
 
-    - name: 'git push'
+    - name: 'git push if there is a difference'
       command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git push origin2 master
+      when: changes.stdout == ""
 
 -
   name: 'Pull project onto controller'
@@ -26,5 +31,8 @@
   tasks:
     - name: 'initialise git if not already'
       command: chdir=/home/controller/proto git init
-    - name: 'pull project'
-      command: chdir=/home/controller/proto git pull https://github.com/DanDorado/AnsibleTestWebApp.git
+      when: changes.stdout != ""
+
+    - name: 'pull project onto controller'
+      command: chdir=/home/{{  ansible_user  }}/proto git pull https://github.com/DanDorado/AnsibleTestWebApp.git
+      when: changes.stdout != ""
