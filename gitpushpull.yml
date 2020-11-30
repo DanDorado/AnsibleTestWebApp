@@ -15,7 +15,7 @@
 
     - name: debug
       debug:
-        var: changes
+        var: changes.stdout
 
     - name: 'git commit if there is a difference'
       command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git commit -m 'This commit was made through ansible gitpushpull.yml'
