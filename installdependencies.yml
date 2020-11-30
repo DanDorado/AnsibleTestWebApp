@@ -1,0 +1,31 @@
+#Playbook for online store
+
+---
+
+-
+  name: 'Set up the Prerequisites of e-commerce'
+  hosts: targets
+  tasks:
+    
+    - name: 'Initialise'
+      debug:
+        msg: 'Logging into {{  ansible_host  }} with {{  ansible_user  }}'
+
+    - name: 'Install Firewalld'
+      yum:
+        name: firewalld
+        state: present
+      become: true
+      become_method: sudo
+
+    - name: 'Start Firewalld'
+      service: service=firewalld state=started
+      become: true
+      become_method: sudo
+
+    - name: 'Enable firewalld on system startup'
+      command: systemctl enable firewalld
+      become: true
+      become_method: sudo
+
+    

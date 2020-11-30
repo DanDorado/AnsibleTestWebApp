@@ -18,7 +18,7 @@
       command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git add .
       when: changes.stdout != ""
 
-    - name: 'git commit if tshere is a difference'
+    - name: 'git commit if there is a difference'
       command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git commit -m 'This commit was made through ansible gitpushpull.yml'
       when: changes.stdout != ""
 
