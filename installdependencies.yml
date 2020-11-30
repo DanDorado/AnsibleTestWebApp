@@ -54,12 +54,43 @@
       become: true
       become_method: sudo
 
+    - name: 'Modify mysql config to allow first modifications'
+      lineinfile:
+        path: /etc/my.cnf
+        line: "skip-grant-tables"
+        state: present
+      become: true
+      become_method: sudo
+
+    - name: 'Reload Mariadb with new config'
+      command: service mariadb restart
+      become: true
+      become_method: sudo
 
 -
   name: 'Create MySql database'
   hosts: targets
   tasks:
-    - name: 'Log into mysql'
-      command: mysql -u [username] -p -e "create database ecomdb"
+    - name: 'Create database ecomdb'
+      command:  mysql -e "CREATE DATABASE ecomdb;"
+
+    - name: 'Allow access to DB'
+      command: mysql -e "FLUSH PRIVILEGES;"
+
+    - name: 'Create user for ecomdb'
+      command: mysql -e "CREATE USER 'ecomuser'@'localhost' IDENTIFIED BY 'ecompassword';"
+      become: true
+      become_method: sudo
+
+    - name: 'Grant high-level privilages to ecomuser'
+      command: mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'ecomuser'@'localhost';"
+      become: true
+      become_method: sudo
+
+    - name: 'Reset with new privilages'
+      command: mysql -e "FLUSH PRIVILEGES;"
+
+    
+
       
 
