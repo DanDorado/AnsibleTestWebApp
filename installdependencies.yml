@@ -104,7 +104,9 @@
       become_method: sudo
 
     - name: Create target directory
-      file: chdir=/home/{{  ansible_user  }}/proto state=directory mode=0755
+      file: 
+        path: /home/{{  ansible_user  }}/proto
+        state: directory
 
     - name: Template a file to /etc/file.conf
       template:
