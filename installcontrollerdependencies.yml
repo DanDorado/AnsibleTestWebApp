@@ -53,6 +53,14 @@
       debug:
         var: result
 
+    - name: 'Modify ansible.cfg to allow host_key_checking'
+      lineinfile:
+        path: etc/ansible/ansible.cfg
+        line: "host_key_checking = FALSE"
+        state: present
+        become: true
+        become_method: sudo
+
 
 #modify etc/ansible/ansible.cfg with sudo vi, - #   (#host_key_checking)
     
