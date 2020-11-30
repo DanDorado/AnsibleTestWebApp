@@ -62,7 +62,3 @@
       become_method: sudo
 
     
-
-
-#modify etc/ansible/ansible.cfg with sudo vi, - #   (#host_key_checking)
-    

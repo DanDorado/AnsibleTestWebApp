@@ -60,6 +60,6 @@
   hosts: targets
   tasks:
     - name: 'Log into mysql'
-      command: mysql -u root -p
+      command: mysql -u [username] -p -e "create database ecomdb"
       
 
