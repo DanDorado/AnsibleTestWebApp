@@ -79,6 +79,11 @@
       command: mysql -e "FLUSH PRIVILEGES;"
 
     - name: 'Create user for ecomdb'
+      command: mysql -e "DROP USER IF EXISTS 'ecomuser'@'localhost';"
+      become: true
+      become_method: sudo
+
+    - name: 'Create user for ecomdb'
       command: mysql -e "CREATE USER 'ecomuser'@'localhost' IDENTIFIED BY 'ecompassword';"
       become: true
       become_method: sudo
@@ -90,6 +95,8 @@
 
     - name: 'Reset with new privilages'
       command: mysql -e "FLUSH PRIVILEGES;"
+      become: true
+      become_method: sudo
 
     
 
