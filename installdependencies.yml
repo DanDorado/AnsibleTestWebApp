@@ -54,6 +54,10 @@
       become: true
       become_method: sudo
 
+    - name: 'Install mysql module'
+      command: ansible-galaxy collection install community.mysql
+      
+
     - name: Create a new database with name 'bobdata'
       community.mysql.mysql_db:
         name: ecomdb
