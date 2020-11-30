@@ -31,8 +31,8 @@
   tasks:
     - name: 'initialise git if not already'
       command: chdir=/home/controller/proto git init
-      when: hostvars['localhost']['changes'].stdut == ""
+      when: hostvars['localhost']['changes'].stdout == ""
 
     - name: 'pull project onto controller'
       command: chdir=/home/{{  ansible_user  }}/proto git pull https://github.com/DanDorado/AnsibleTestWebApp.git
-      when: hostvars['localhost']['changes'].stdut == ""
+      when: hostvars['localhost']['changes'].stdout == ""
