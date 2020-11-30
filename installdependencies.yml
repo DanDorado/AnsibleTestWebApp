@@ -112,9 +112,9 @@
       template:
         src: /home/controller/proto/db-load-script.sql
         dest: /home/{{  ansible_user  }}/proto/db-load-script.sql
-        owner: bin
-        group: wheel
-        mode: '0644'
+      become: true
+      become_method: sudo
+      
 
     
 
