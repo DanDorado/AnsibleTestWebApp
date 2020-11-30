@@ -19,5 +19,7 @@
   name: 'Pull project onto controller'
   hosts: controller
   tasks:
+    - name: 'initialise git if not already'
+      command: chdir=/home/controller/proto git init
     - name: 'pull project'
       command: chdir=/home/controller/proto git pull https://github.com/DanDorado/AnsibleTestWebApp.git
