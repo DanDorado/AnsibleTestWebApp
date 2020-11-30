@@ -64,7 +64,7 @@
       become_method: sudo
 
     - name: 'Reload Mariadb with new config'
-      command: service mariadb restart
+      service: service=mariadb state=restarted
       become: true
       become_method: sudo
 
@@ -102,6 +102,17 @@
       command: mysql -e "FLUSH PRIVILEGES;"
       become: true
       become_method: sudo
+
+    - name: Create target directory
+      file: chdir=/home/{{  ansible_user  }}/proto state=directory mode=0755
+
+    - name: Template a file to /etc/file.conf
+      template:
+        src: chdir=/home/controller/proto/db-load-script.sql
+        dest: /home/{{  ansible_user  }}/proto/db-load-script.sql
+        owner: bin
+        group: wheel
+        mode: '0644'
 
     
 
