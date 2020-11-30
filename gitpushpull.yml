@@ -1,0 +1,17 @@
+#Playbook for online store
+
+---
+
+-
+  name: 'Push local project to "https://github.com/DanDorado/AnsibleTestWebApp.git"'
+  hosts: localhost
+  tasks:
+    - name: 'git add all'
+      command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git add .
+
+    - name: 'git commit'
+      command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git commit -m 'This commit was made through ansible gitpushpull.yml'
+
+    - name: 'git push'
+      command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git push origin master
+      

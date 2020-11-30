@@ -1,0 +1,29 @@
+#Playbook for online store
+
+---
+
+-
+  name: 'Set up Git to pull repo from localhost onto controller'
+  hosts: controller
+  tasks:
+    
+    - name: 'Initialise'
+      debug:
+        msg: 'Logging into {{ ansible_host  }} with {{  ansible_user  }}'
+
+    - name: 'Install Git'
+      yum:
+        name: git
+        state: present
+      become: true
+      become_method: sudo
+
+    - name: 'Check Install'
+      command: git --version
+      register: result
+
+    - name: debug
+      debug:
+        var: result
+
+    

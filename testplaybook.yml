@@ -3,7 +3,7 @@
 ---
 
 -
-  hosts: target1
+  hosts: controller
 
   tasks:
     - name: 'Install Firewalld and have it start at startup'
