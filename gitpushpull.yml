@@ -6,9 +6,6 @@
   name: 'Push local project to "https://github.com/DanDorado/AnsibleTestWebApp.git" if there are any changes'
   hosts: localhost
   tasks:
-    - name: 'git add all'
-      command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git add .
-
     - name: 'git diff'
       command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git diff
       register: changes
@@ -17,13 +14,17 @@
       debug:
         var: changes.stdout
 
-    - name: 'git commit if there is a difference'
+    - name: 'git add all'
+      command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git add .
+      when: changes.stdout != ""
+
+    - name: 'git commit if tshere is a difference'
       command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git commit -m 'This commit was made through ansible gitpushpull.yml'
-      when: changes.stdout == ""
+      when: changes.stdout != ""
 
     - name: 'git push if there is a difference'
       command: chdir=/mnt/c/Users/dan.joyce/proto/ans/AWS_Ansible/TestPlayBook git push origin2 master
-      when: changes.stdout == ""
+      when: changes.stdout != ""
 
 -
   name: 'Pull project onto controller'
@@ -31,8 +32,8 @@
   tasks:
     - name: 'initialise git if not already'
       command: chdir=/home/controller/proto git init
-      when: hostvars['localhost']['changes'].stdout == ""
+      when: hostvars['localhost']['changes'].stdout != ""
 
     - name: 'pull project onto controller'
       command: chdir=/home/{{  ansible_user  }}/proto git pull https://github.com/DanDorado/AnsibleTestWebApp.git
-      when: hostvars['localhost']['changes'].stdout == ""
+      when: hostvars['localhost']['changes'].stdout != ""
