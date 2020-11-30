@@ -28,7 +28,7 @@
 
 -
   name: 'Pull project onto controller'
-  hosts: controller
+  hosts: localhost
   tasks:
     - name: 'initialise git if not already'
       command: chdir=/home/{{ ansible_user }}/proto git init
