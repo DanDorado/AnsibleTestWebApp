@@ -54,12 +54,12 @@
       become: true
       become_method: sudo
 
+
 -
   name: 'Create MySql database'
   hosts: targets
   tasks:
-    - name: Create a new database with name 'ecomdb'
-      mariadb_databases:
-        - name: ecomdb
+    - name: 'Log into mysql'
+      command: mysql -u root -p
       
 
