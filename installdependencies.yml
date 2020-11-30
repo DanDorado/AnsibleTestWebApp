@@ -84,7 +84,7 @@
       become_method: sudo
 
     - name: 'Create user for ecomdb'
-      command: mysql -e "DROP USER IF EXISTS 'ecomuser'@'localhost';"
+      command: mysql -e "DROP USER 'ecomuser'@'localhost';"
       become: true
       become_method: sudo
 
