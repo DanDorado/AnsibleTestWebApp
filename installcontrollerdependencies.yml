@@ -31,6 +31,13 @@
   hosts: controller
   tasks:
 
+    - name: 'Ansible-Install dependencies'
+      yum:
+        name: epel-release
+        state: present
+      become: true
+      become_method: sudo
+
     - name: 'Install Ansible'
       yum:
         name: ansible
@@ -46,4 +53,6 @@
       debug:
         var: result
 
+
+#modify etc/ansible/ansible.cfg with sudo vi, - #   (#host_key_checking)
     
