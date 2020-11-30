@@ -59,6 +59,7 @@
   hosts: targets
   tasks:
     - name: Create a new database with name 'ecomdb'
-      command: mysql -uroot -e "create database 'ecomdb'"
+      mariadb_databases:
+        - name: ecomdb
       
 
