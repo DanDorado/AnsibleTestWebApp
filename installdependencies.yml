@@ -58,7 +58,3 @@
       command: ansible-galaxy collection install community.mysql
       
 
-    - name: Create a new database with name 'bobdata'
-      community.mysql.mysql_db:
-        name: ecomdb
-        state: present
