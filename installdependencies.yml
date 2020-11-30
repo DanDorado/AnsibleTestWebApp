@@ -79,7 +79,7 @@
       command: mysql -e "FLUSH PRIVILEGES;"
 
     - name: 'Create user for ecomdb'
-      command: mysql -e "CREATE USER IF NOT EXISTS 'ecomuser'@'localhost' IDENTIFIED BY 'ecompassword';"
+      command: mysql -e "CREATE USER 'ecomuser'@'localhost' IDENTIFIED BY 'ecompassword';"
       become: true
       become_method: sudo
 
