@@ -28,7 +28,7 @@
 
 -
   name: 'Pull project onto controller'
-  hosts: localhost
+  hosts: controller
   tasks:
     - name: Create a the destination directory if it does not exist
       file:
@@ -40,6 +40,6 @@
       command: chdir=/home/{{ ansible_user }}/proto git init
       when: hostvars['localhost']['changes'].stdout != ""
 
-    - name: 'pull project onto controller'
+    - name: 'pull project onto {{ ansible_user }}'
       command: chdir=/home/{{  ansible_user  }}/proto git pull https://github.com/DanDorado/AnsibleTestWebApp.git
       when: hostvars['localhost']['changes'].stdout != ""
