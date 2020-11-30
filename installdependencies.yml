@@ -44,3 +44,17 @@
       command: systemctl enable mariadb
       become: true
       become_method: sudo
+
+    - name: 'Configure Firewall for Database'
+      command: firewall-cmd --permanent --zone=public --add-port=3306/tcp
+      become: true
+      become_method: sudo
+    
+    - command: firewall-cmd --reload
+      become: true
+      become_method: sudo
+
+    - name: Create a new database with name 'bobdata'
+      community.mysql.mysql_db:
+        name: ecomdb
+        state: present
