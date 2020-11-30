@@ -114,6 +114,40 @@
         dest: /home/{{  ansible_user  }}/proto/db-load-script.sql
       become: true
       become_method: sudo
+
+    - name: Run script
+      command: chdir=/home/{{  ansible_user  }}/proto mysql < db-load-script.sql
+
+
+-
+  name: 'Configure Web Service'
+  hosts: targets
+  tasks:
+    - name: Install php-mysql
+      yum:
+        name: httpd php php-mysql
+        state: present
+      become: true
+      become_method: sudo
+
+    - command: firewall-cmd --permanent --zone=public --add-port=80/tcp
+      become: true
+      become_method: sudo
+
+    - command: firewall-cmd --reload
+      become: true
+      become_method: sudo
+
+    - command: sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
+      become: true
+      become_method: sudo
+    
+    - name: start httpd
+      service: service=httpd state=started
+
+    - command: systemctl enable httpd
+      become: true
+      become_method: sudo
       
 
     
