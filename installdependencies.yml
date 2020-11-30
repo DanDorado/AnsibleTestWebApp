@@ -58,7 +58,8 @@
       lineinfile:
         path: /etc/my.cnf
         line: "skip-grant-tables"
-        state: present
+        regexp: '^(.*)# instructions in http://fedoraproject.org/wiki/Systemd(.*)$'
+        backrefs: yes
       become: true
       become_method: sudo
 
