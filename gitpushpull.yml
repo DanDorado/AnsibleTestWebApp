@@ -31,7 +31,7 @@
   hosts: controller
   tasks:
     - name: 'initialise git if not already'
-      command: chdir=/home/controller/proto git init
+      command: chdir=/home/{{ ansible_user }}/proto git init
       when: hostvars['localhost']['changes'].stdout != ""
 
     - name: 'pull project onto controller'
