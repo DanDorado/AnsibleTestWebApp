@@ -110,7 +110,7 @@
 
     - name: Template a file to /etc/file.conf
       template:
-        src: chdir=/home/controller/proto/db-load-script.sql
+        src: /home/controller/proto/db-load-script.sql
         dest: /home/{{  ansible_user  }}/proto/db-load-script.sql
         owner: bin
         group: wheel
