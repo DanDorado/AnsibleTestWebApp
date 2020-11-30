@@ -61,6 +61,11 @@
       become: true
       become_method: sudo
 
+    - name: 'Install mysql module'
+      command: ansible-galaxy collection install community.mysql
+
+    
+
 
 #modify etc/ansible/ansible.cfg with sudo vi, - #   (#host_key_checking)
     

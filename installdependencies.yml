@@ -54,7 +54,6 @@
       become: true
       become_method: sudo
 
-    - name: 'Install mysql module'
-      command: ansible-galaxy collection install community.mysql
+
       
 
