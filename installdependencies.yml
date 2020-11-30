@@ -55,12 +55,10 @@
       become_method: sudo
 
 -
-  name: 'Set up the Prerequisites of e-commerce'
+  name: 'Create MySql database'
   hosts: targets
   tasks:
     - name: Create a new database with name 'ecomdb'
-      community.mysql.mysql_db:
-        name: ecomdb
-        state: present
+      command: mysql -uroot -e "create database 'ecomdb'"
       
 
