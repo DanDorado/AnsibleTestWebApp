@@ -30,6 +30,12 @@
   name: 'Pull project onto controller'
   hosts: localhost
   tasks:
+    - name: Create a the destination directory if it does not exist
+      file:
+        path: /home/{{  ansible_user  }}/proto
+        state: directory
+        mode: '0755'
+
     - name: 'initialise git if not already'
       command: chdir=/home/{{ ansible_user }}/proto git init
       when: hostvars['localhost']['changes'].stdout != ""
