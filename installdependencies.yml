@@ -72,6 +72,10 @@
   name: 'Create MySql database'
   hosts: targets
   tasks:
+
+    - name: 'Destory any existing ecomdb database'
+      command:  mysql -e "DROP DATABASE IF EXISTS ecomdb;"
+
     - name: 'Create database ecomdb'
       command:  mysql -e "CREATE DATABASE IF NOT EXISTS ecomdb;"
 
