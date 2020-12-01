@@ -113,7 +113,7 @@
       become_method: sudo
 
     - name: 'Insert values into products'
-      command: mysql -e 'USE ecomdb; INSERT INTO products (Name,Price,ImageUrl) VALUES ("Laptop","100","c-1.png");'
+      command: mysql -e 'USE ecomdb; INSERT INTO products ("Laptop","100","c-1.png");'
       become: true
       become_method: sudo
 
