@@ -167,8 +167,10 @@
       become: true
       become_method: sudo
     
-    - name: start httpd
+    - name: "start httpd"
       service: service=httpd state=started
+      become: true
+      become_method: sudo
 
     - command: systemctl enable httpd
       become: true
