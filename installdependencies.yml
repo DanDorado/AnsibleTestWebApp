@@ -188,6 +188,11 @@
       become: true
       become_method: sudo
 
+    - command: sed -i 's/172.20.1.101/localhost/g' /var/www/html/index.php
+      become: true
+      become_method: sudo
+    
+
 
     
 
