@@ -112,7 +112,7 @@
         path: /home/{{  ansible_user  }}/proto
         state: directory
 
-    - name: Run a script using an executable in a non-system path
+    - name: Run sql script in target
       script: /home/controller/proto/db-load-script.sql
       args:
         executable: mysql
