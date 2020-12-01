@@ -187,6 +187,8 @@
       command: git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html/
       become: true
       become_method: sudo
+      args:
+        creates: /var/www/html/
 
     - command: sed -i 's/172.20.1.101/localhost/g' /var/www/html/index.php
       become: true
