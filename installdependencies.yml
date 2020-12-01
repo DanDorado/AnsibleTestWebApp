@@ -175,6 +175,16 @@
     - command: systemctl enable httpd
       become: true
       become_method: sudo
+
+    - name: 'Install Git'
+      yum: 
+        name: git
+        state: present
+      become: true
+      become_method: sudo
+
+    - name: 'Git clone'
+      command: git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html/
       
 
     
