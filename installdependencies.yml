@@ -117,6 +117,8 @@
 
     - name: Run script
       command: chdir=/home/{{  ansible_user  }}/proto mysql < db-load-script.sql
+      become: true
+      become_method: sudo
 
 
 -
