@@ -121,6 +121,8 @@
 
     - name: Run script
       shell: mysql < /home/target/proto/db-load-script.sql
+      become: true
+      become_method: sudo
 
 
 -
