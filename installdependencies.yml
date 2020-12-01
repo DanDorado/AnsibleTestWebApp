@@ -120,7 +120,7 @@
       become_method: sudo
 
     - name: Run script
-      shell: mysql < /home/target/proto/db-load-script.sql
+      shell: mysql -u ecomuser -pecompassword < /home/target/proto/db-load-script.sql
       become: true
       become_method: sudo
 
