@@ -112,15 +112,10 @@
         path: /home/{{  ansible_user  }}/proto
         state: directory
 
-    - name: Template a file to /etc/file.conf
-      template:
-        src: /home/controller/proto/db-load-script.sql
-        dest: /home/{{  ansible_user  }}/proto/db-load-script.sql
-      become: true
-      become_method: sudo
-
-    - name: Run script
-      command: chdir=/home/{{  ansible_user  }}/proto mysql < db-load-script.sql
+    - name: Run a script using an executable in a non-system path
+      script: /home/controller/proto/db-load-script.sql
+      args:
+        executable: mysql
       become: true
       become_method: sudo
 
