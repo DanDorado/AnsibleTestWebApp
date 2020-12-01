@@ -136,7 +136,7 @@
   tasks:
     - name: Install php-mysql
       yum:
-        name: httpd php php-mysql
+        name: httpd,php,php-mysql
         state: present
       become: true
       become_method: sudo
