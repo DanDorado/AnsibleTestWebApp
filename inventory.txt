@@ -1,7 +1,0 @@
-controller ansible_host=192.168.1.161 ansible_connection=ssh ansible_user=controller ansible_ssh_pass=ctrlpass ansible_become_pass=ctrlpass
-target1 ansible_host=192.168.1.156 ansible_connection=ssh ansible_user=target ansible_ssh_pass=targetpass ansible_become_pass=targetpass
-target2 ansible_host=192.168.1.155 ansible_connection=ssh ansible_user=target ansible_ssh_pass=targetpass ansible_become_pass=targetpass
-
-[targets]
-target1
-target2
